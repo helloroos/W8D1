@@ -1,7 +1,6 @@
 class User < ApplicationRecord
-    #FIGVAPER
 
-    validates :password, :session_token, presence: true, uniqueness: true
+    validates :username, :session_token, presence: true, uniqueness: true
     validates :password_digest, presence: true
     validates :password, length: { minimum: 6, allow_nil: true }
     attr_reader :password
@@ -17,11 +16,11 @@ class User < ApplicationRecord
     end
 
     def self.generate_session_token
-        SecureRandom::safeurl_base64(16)
+        SecureRandom::urlsafe_base64(16)
     end
 
     def is_password?(password)
-        pass = BCrypt::Password.new(password)
+        pass = BCrypt::Password.new(self.password_digest)
         pass.is_password?(password)
     end
 
