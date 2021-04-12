@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :edit, :update, :show, :index, :destroy]
 
+  resources :subs, only: [:new, :create, :edit, :update, :show, :index, :destroy]
+
   resource :session
-  
+
 end
